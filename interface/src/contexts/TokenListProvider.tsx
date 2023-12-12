@@ -12,14 +12,14 @@ export function TokenListProvider({ children }: TokenListProviderProps) {
   const { data, isLoading, error } = useDrawingRead(
     'getTokenPoolInfo',
     [],
-    true
+    false
   );
   console.log(data);
   useEffect(() => {
     if (data) {
       setTokenList(data as bigint[]);
     }
-  }, [data]);
+  }, []);
   return (
     <TokenListContext.Provider
       value={{
