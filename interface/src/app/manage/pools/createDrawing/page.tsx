@@ -29,9 +29,6 @@ export default function Page() {
   }, [status]);
   return (
     <div className='flex flex-col justify-start'>
-      <div className='h-[40px] w-[300px]'>
-        <AddPoolButton>Add Drawing Pool</AddPoolButton>
-      </div>
       <div className='mt-[38px] flex w-[950px] flex-col gap-4'>
         {poolNames.slice(0, poolAmount).map((poolName, index) => {
           return (
