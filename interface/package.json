@@ -10,9 +10,10 @@
     "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "antd": "^5.12.2",
+    "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4",
     "react-icons": "^4.12.0",
     "styled-components": "^6.1.1",
     "swr": "^2.2.4",
@@ -22,17 +23,17 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.0.0",
+    "postcss": "^8",
     "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.7"
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }
