@@ -30,7 +30,7 @@ export default function PoolProcessHeader() {
       break;
   }
   return (
-    <Header className='inline-flex h-[110px] w-[1000px] items-center bg-gray-800'>
+    <Header className='inline-flex h-[110px] w-[1000px] items-center bg-[#0c0e12]'>
       <div className='flex w-[100%] items-center justify-between'>
         <div className='inline-flex items-center justify-start gap-4'>
           <div className='h-10 w-1 bg-yellow-400'></div>

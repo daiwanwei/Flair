@@ -43,7 +43,7 @@ export default function PoolProcessSider() {
     },
   ];
   return (
-    <Sider style={{ backgroundColor: 'rgb(31 41 55)' }}>
+    <Sider style={{ backgroundColor: '#0c0e12' }}>
       <div className='mt-[37px] flex justify-center'>
         <Link href='/manage'>
           {/*<img src='/Seekers-Alliance-1.png' width={101} height={34} />*/}
@@ -52,7 +52,7 @@ export default function PoolProcessSider() {
       <div className='mt-[60px]'>
         <Menu
           theme='dark'
-          style={{ backgroundColor: 'rgb(31 41 55)' }}
+          style={{ backgroundColor: '#0c0e12' }}
           mode='inline'
           items={items}
           selectable={false}

@@ -12,9 +12,9 @@ export default function PageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Layout className='flex justify-between bg-gray-800 py-4'>
+    <Layout className='flex justify-between bg-[#0c0e12] py-4'>
       <PoolProcessSider />
-      <Layout className='flex justify-between bg-gray-800'>
+      <Layout className='flex justify-between bg-[#0c0e12]'>
         <PoolProcessHeader />
         <Content style={{ margin: '24px 16px 0' }}>{children}</Content>
       </Layout>
