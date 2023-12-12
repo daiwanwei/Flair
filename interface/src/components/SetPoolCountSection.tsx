@@ -16,10 +16,11 @@ export default function SetPoolCountSection({
   onLoading,
 }: SetPoolCountSectionProps) {
   const { tokenList } = useTokenList();
+
   const [countList, setCountList] = React.useState<bigint[]>(
     Array.from({ length: 7 }, () => BigInt(0))
   );
-  console.log(countList);
+  console.log(countList,tokenList);
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const handleUpdateCount = useCallback(
     (index: number, value: string) => {
@@ -92,7 +93,7 @@ export default function SetPoolCountSection({
             <div className='h-[220px] w-[110px]'>
               <AddCard>Add NFT</AddCard>
             </div>
-            {tokenList.map((item, index) => {
+            {tokenList && tokenList.map((item, index) => {
               return (
                 <div className='h-[220px] w-[110px]' key={index}>
                   <CountInputCard
