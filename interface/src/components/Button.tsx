@@ -1,5 +1,5 @@
-import { Button } from 'antd';
-import styled from 'styled-components';
+import { Button } from "antd";
+import styled from "styled-components";
 
 export const BaseButton = styled(Button)`
   width: 100%;
@@ -8,7 +8,7 @@ export const BaseButton = styled(Button)`
   font-size: 21px;
   font-weight: bold;
   text-transform: uppercase;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   border-radius: 4px;
 `;
 
@@ -16,5 +16,5 @@ export const PrimaryButton = styled(BaseButton)`
   border: 1px solid #fffd8c;
   background: #f0b90b;
   text-transform: none;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 `;
