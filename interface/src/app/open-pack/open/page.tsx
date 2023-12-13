@@ -43,8 +43,8 @@ export default function Page() {
         <div className="flex h-[60px] w-[383px] flex-col justify-between gap-4">
           <OpenPackButton
             packId={drawingPoolId}
-            poolAmount={3}
-            packAmount={1}
+            poolAmount={poolAmount}
+            packAmount={packAmount}
           >{`OPEN ${packAmount} PACKS*`}</OpenPackButton>
         </div>
       </div>

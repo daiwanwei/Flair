@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePublicClient } from "wagmi";
+import {getSupportedChainId} from "@/common";
 
 export default function useWatchEvent<T>(
   fetchFn: () => Promise<T | null>,
@@ -7,7 +8,7 @@ export default function useWatchEvent<T>(
 ) {
   const [event, setEvent] = useState<T | null>(null);
   const [isActive, setIsActive] = useState(true);
-  const client = usePublicClient();
+  const client = usePublicClient({chainId:getSupportedChainId()});
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timeout | undefined;
 
