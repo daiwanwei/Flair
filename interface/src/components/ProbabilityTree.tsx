@@ -52,7 +52,7 @@ export default function ProbabilityTree() {
   });
   return (
     <Tree
-      className="bg-gray-800"
+      className="bg-[#0c0e12]"
       treeData={data}
       defaultExpandedKeys={["0-0", "0-1", "0-0-0"]}
       titleRender={(item) => (

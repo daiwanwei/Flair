@@ -7,6 +7,7 @@ import { NFTProfile } from "@/components/NFTProfile";
 import useDrawingTxn from "@/hooks/useDrawingTxn";
 import CountInputCard from "@/components/CountInputCard";
 import { useTokenList } from "@/hooks/useTokenList";
+import {getSupportedChainId} from "@/common";
 
 interface SetPoolCountSectionProps {
   onLoading?: (isLoading: boolean) => void;
@@ -115,7 +116,7 @@ export default function SetPoolCountSection({
           <div className="w-[300px]">
             <SpecificChainButton
               isLoading={isLoading}
-              chainId={43113}
+              chainId={getSupportedChainId()}
               onClick={handleSetCount}
             >
               Set Mint Caps

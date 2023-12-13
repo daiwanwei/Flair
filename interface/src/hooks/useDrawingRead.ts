@@ -3,6 +3,7 @@ import { useContractRead } from "wagmi";
 import { parseAbi } from "viem";
 import { QueryResult } from "@/types";
 import { DrawingPoolInfo } from "@/core/types";
+import {getSupportedChainId} from "@/common";
 
 export default function useDrawingRead(
   fn: string,
@@ -21,13 +22,14 @@ export default function useDrawingRead(
     ]),
     // abi: DRAWING_ABI,
   };
+  console.log(`useDrawingRead`, fn, drawingConfig, args,getSupportedChainId());
   console.log(fn, drawingConfig, args);
   const read = useContractRead({
     // ...config,
     ...drawingConfig,
     // @ts-ignore
     functionName: fn,
-    chainId: 43113,
+    chainId: getSupportedChainId(),
     args: args,
     watch: watch,
   });

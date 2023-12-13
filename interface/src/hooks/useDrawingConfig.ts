@@ -1,8 +1,9 @@
 import { useAddresses } from "@/hooks/useAddresses";
 import { parseAbi } from "viem";
+import {getSupportedChainId} from "@/common";
 export default function useDrawingConfig() {
   const { drawingAddress } = useAddresses();
-  const chainId = 43113;
+  const chainId = getSupportedChainId();
   return {
     address: drawingAddress,
     // abi: DRAWING_ABI,

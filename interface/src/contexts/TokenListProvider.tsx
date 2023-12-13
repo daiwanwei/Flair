@@ -19,7 +19,7 @@ export function TokenListProvider({ children }: TokenListProviderProps) {
     if (data) {
       setTokenList(data as bigint[]);
     }
-  }, []);
+  }, [data]);
   return (
     <TokenListContext.Provider
       value={{

@@ -15,13 +15,14 @@ import useCoinTxn from "@/hooks/useCoinTxn";
 import { useCoinAddress } from "@/hooks/useCoinAddress";
 import useCoinRead from "@/hooks/useCoinRead";
 import NFTSlide from "@/components/NFTSlide";
+import {getSupportedChainId} from "@/common";
 
 export default function Page() {
   const { packId } = getConfig();
   const networkList = ["AVALANCHE", "ETHEREUM", "OPTIMISM","opBNB"];
   const amountList = [1, 5, 10, 15, 20, 25];
-  const selectedNetwork = 0;
-  const [selectedToken, setSelectedToken] = useState(0);
+  const selectedNetwork = 3;
+  const [selectedToken, setSelectedToken] = useState(1);
   const [selectedAmount, setSelectedAmount] = useState(0);
   const [messageId, setMessageId] = useState<string | undefined>(undefined);
   const [senderHash, setSenderHash] = useState<`0x${string}` | undefined>(
@@ -107,12 +108,12 @@ export default function Page() {
           <NFTSlide />
         </div>
           <div className="flex h-[60px] w-[465px] flex-row gap-4">
-            <SelectingButton
-                selected={selectedToken === 0}
-                onClick={handleSelectToken(0)}
-            >
-              {nativeCoin}
-            </SelectingButton>
+            {/*<SelectingButton*/}
+            {/*    selected={selectedToken === 0}*/}
+            {/*    onClick={handleSelectToken(0)}*/}
+            {/*>*/}
+            {/*  {nativeCoin}*/}
+            {/*</SelectingButton>*/}
             <SelectingButton
                 selected={selectedToken === 1}
                 onClick={handleSelectToken(1)}
@@ -171,6 +172,9 @@ function getChainId(network: string): number {
     case "ETHEREUM":
       chainId = 11155111;
       break;
+    case "opBNB":
+      chainId = 5611;
+      break;
     case "OPTIMISM":
       chainId = 420;
       break;
@@ -226,7 +230,7 @@ function BuyStatusButton({
   } = useWaitForCCIP(11155111, senderHash);
   const handleHash = useCallback(
     (hash: `0x${string}`) => {
-      if (getChainId(network) === 43113) {
+      if (getChainId(network) === getSupportedChainId()) {
         setSenderHash(hash);
         setStatus(BuyStatus.AfterBuy);
       } else {
@@ -420,6 +424,10 @@ function BuyByNativeButton({
         //@ts-ignore
         submit?.({ args: [packId, amount], value: value });
         break;
+      case 5611:
+        //@ts-ignore
+        submit?.({ args: [packId, amount], value: value });
+        break;
       case 11155111:
         submit?.({
           args: [
@@ -492,7 +500,8 @@ function BuyByCoinButton({
 }: BuyByCoinButtonProps) {
   const { marketplaceReceiverAddress } = useAddresses();
   const { chain } = useNetwork();
-  const usdtAddress = useCoinAddress(coin, chain?.id || 43113);
+  const usdtAddress = useCoinAddress(coin, chain?.id || getSupportedChainId());
+  console.log(`usdtAddress`, usdtAddress)
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const {
     hash,
@@ -512,6 +521,10 @@ function BuyByCoinButton({
     console.log(`value: ${value}`);
     switch (getChainId(network)) {
       case 43113:
+        //@ts-ignore
+        submit?.({ args: [usdtAddress, packId, amount] });
+        break;
+      case 5611:
         //@ts-ignore
         submit?.({ args: [usdtAddress, packId, amount] });
         break;

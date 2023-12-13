@@ -11,6 +11,7 @@ import useDrawingTxn from "@/hooks/useDrawingTxn";
 import { useTokenList } from "@/hooks/useTokenList";
 import { filterDrawingEvents } from "@/core/events/drawing";
 import { SetUnitPoolParams } from "@/core/types";
+import {getSupportedChainId} from "@/common";
 
 interface SetUnitProbabilitySectionProps {
   poolName: string;
@@ -110,6 +111,7 @@ export default function SetUnitProbabilitySection({
   useEffect(() => {
     onLoading?.(isLoading);
   }, [isLoading]);
+  console.log("SetUnitProbabilitySection",getSupportedChainId())
   return (
     <>
       {contextHolder}
@@ -143,7 +145,7 @@ export default function SetUnitProbabilitySection({
           <div className="w-[300px]">
             <SpecificChainButton
               isLoading={isLoading}
-              chainId={43113}
+              chainId={getSupportedChainId()}
               onClick={handleSetProbabilities}
             >
               Set Probabilities

@@ -10,6 +10,10 @@ export default function useMarketplaceWrite(fn: string, chainId: number) {
       address = config.receiver;
       abi = config.receiverAbi;
       break;
+    case 5611:
+      address = config.receiver;
+      abi = config.receiverAbi;
+      break;
     case 11155111:
       address = config.sender;
       abi = config.senderAbi;
