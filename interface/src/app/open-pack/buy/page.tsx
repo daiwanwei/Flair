@@ -8,8 +8,6 @@ import useTxnNotify from "@/hooks/useTxnNotify";
 import { TransactionAction } from "@/utils/transaction";
 import useMarketplaceTxn from "@/hooks/useMarketplaceTxn";
 import { useAddresses } from "@/hooks/useAddresses";
-import usePackPrice from "@/hooks/usePackPrice";
-import { formatAmount } from "@/common";
 import useWaitForCCIP from "@/hooks/useWaitForCCIP";
 import Link from "next/link";
 import { getConfig } from "@/config";
@@ -20,9 +18,9 @@ import NFTSlide from "@/components/NFTSlide";
 
 export default function Page() {
   const { packId } = getConfig();
-  const networkList = ["AVALANCHE", "opBNB", "OPTIMISM"];
+  const networkList = ["AVALANCHE", "ETHEREUM", "OPTIMISM","opBNB"];
   const amountList = [1, 5, 10, 15, 20, 25];
-  const selectedNetwork = 1;
+  const selectedNetwork = 0;
   const [selectedToken, setSelectedToken] = useState(0);
   const [selectedAmount, setSelectedAmount] = useState(0);
   const [messageId, setMessageId] = useState<string | undefined>(undefined);

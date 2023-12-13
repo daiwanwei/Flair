@@ -112,7 +112,7 @@ function OpenPackButton({
   }, []);
 
   const handleAfterOpening = useCallback(() => {
-    const url = `/open-pack/opening?hash=${completeHash}`;
+    const url = `/receipts/${completeHash}`;
     router.push(url);
   }, [completeHash]);
 
