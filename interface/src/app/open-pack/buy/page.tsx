@@ -20,7 +20,7 @@ export default function Page() {
   const { packId } = getConfig();
   const networkList = ["AVALANCHE", "ETHEREUM", "OPTIMISM","opBNB"];
   const amountList = [1, 5, 10, 15, 20, 25];
-  const selectedNetwork = 0;
+  const selectedNetwork = 3;
   const [selectedToken, setSelectedToken] = useState(0);
   const [selectedAmount, setSelectedAmount] = useState(0);
   const [messageId, setMessageId] = useState<string | undefined>(undefined);
@@ -170,6 +170,9 @@ function getChainId(network: string): number {
       break;
     case "ETHEREUM":
       chainId = 11155111;
+      break;
+    case "opBNB":
+      chainId = 5611;
       break;
     case "OPTIMISM":
       chainId = 420;

@@ -13,24 +13,24 @@ import {
   avalancheFuji,
   avalanche,
   optimism,
-  optimismGoerli,
+  optimismGoerli, opBNB, opBNBTestnet,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, sepolia, optimism, optimismGoerli, avalanche, avalancheFuji],
+  [avalanche, avalancheFuji,opBNB,opBNBTestnet],
   [publicProvider()],
 );
 
 const projectId = "YOUR_PROJECT_ID";
 
 const { wallets } = getDefaultWallets({
-  appName: "Seeker-Alliance",
+  appName: "Flair",
   projectId,
   chains,
 });
 
 const demoAppInfo = {
-  appName: "Seeker-Alliance",
+  appName: "Flair",
 };
 
 const connectors = connectorsForWallets([
