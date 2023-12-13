@@ -18,6 +18,9 @@ export default function useMarketplaceRead(
     case 43113:
       address = config.receiver;
       break;
+    case 5611:
+      address = config.receiver;
+      break;
     case 11155111:
       address = config.sender;
       break;

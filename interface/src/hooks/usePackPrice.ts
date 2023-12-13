@@ -20,6 +20,11 @@ export default function usePackPrice(
       usdtAddress = "0xae940284e4eB37Fec1F1Bf1D7f297EB1f07f2B26";
       multiCallAddress = "0xcA11bde05977b3631167028862bE2a173976CA11";
       break;
+    case 5611:
+      address = config.receiver;
+      usdtAddress = "0xae940284e4eB37Fec1F1Bf1D7f297EB1f07f2B26";
+      multiCallAddress = "0xcA11bde05977b3631167028862bE2a173976CA11";
+      break;
     case 11155111:
       address = config.sender;
       usdtAddress = "0x4E85938b8cba54F4726A649b727c15Cca379b146";

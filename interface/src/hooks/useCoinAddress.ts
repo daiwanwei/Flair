@@ -8,6 +8,8 @@ export function useCoinAddress(coin: string, chainId: number): Address {
       return avaxUsdtAddress;
     case 11155111:
       return ethUsdtAddress;
+    case 5611:
+        return ethUsdtAddress;
     default:
       return avaxUsdtAddress;
   }

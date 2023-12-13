@@ -3,6 +3,7 @@ import { parseAbi, PublicClient } from "viem";
 import useWatchEvent from "@/hooks/useWatchEvent";
 import { useAddresses } from "@/hooks/useAddresses";
 import { usePublicClient } from "wagmi";
+import {getSupportedChainId} from "@/common";
 
 export default function useWatchMarketplaceEvent(
   fn: string,
@@ -17,7 +18,7 @@ export default function useWatchMarketplaceEvent(
       return marketplaceSenderAddress;
     }
   }, [fn, marketplaceReceiverAddress, marketplaceSenderAddress]);
-  const client = usePublicClient({ chainId: 43113 });
+  const client = usePublicClient({ chainId: getSupportedChainId() });
   const fetchFn = useCallback(async () => {
     const newBlockNumber = await client.getBlockNumber();
     console.log(`open page newBlockNumber`, newBlockNumber);

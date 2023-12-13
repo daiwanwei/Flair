@@ -3,6 +3,7 @@ import { useContractWrite, useWaitForTransaction } from "wagmi";
 import useDrawingWrite from "@/hooks/useDrawingWrite";
 import { useEffect, useMemo, useRef } from "react";
 import { Hash } from "viem";
+import {getSupportedChainId} from "@/common";
 
 export default function useDrawingTxn(fn: string) {
   const hashRef = useRef<Hash>();
@@ -23,7 +24,7 @@ export default function useDrawingTxn(fn: string) {
     isSuccess: isConfirmSuccess,
   } = useWaitForTransaction({
     hash: submitData?.hash,
-    chainId: 43113,
+    chainId: getSupportedChainId(),
   });
   const isLoading = useMemo(() => {
     return isSubmitLoading || isConfirmLoading;

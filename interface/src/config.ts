@@ -1,5 +1,6 @@
 export function getConfig() {
   return {
+    supportedChainId:process.env.NEXT_PUBLIC_CHAIN_ID,
     drawingAddress: process.env.NEXT_PUBLIC_DRAWING_ADDRESS,
     nftAddress:
       process.env.NEXT_PUBLIC_NFT_ADDRESS ||
@@ -19,6 +20,9 @@ export function getConfig() {
     avaxUsdtAddress:
       process.env.NEXT_PUBLIC_AVAX_USDT_ADDRESS ||
       "0xae940284e4eB37Fec1F1Bf1D7f297EB1f07f2B26",
+    opbnbUsdtAddress:
+        process.env.NEXT_PUBLIC_OPBNB_USDT_ADDRESS ||
+        "0xDE9504986Db4fec3C23BBFA36cd8199c3967bb02",
     ethUsdtAddress:
       process.env.NEXT_PUBLIC_ETH_USDT_ADDRESS ||
       "0x4E85938b8cba54F4726A649b727c15Cca379b146",
@@ -32,4 +36,9 @@ export function getConfig() {
     vrfUrl: process.env.NEXT_PUBLIC_VRF_URL,
     openseaCollectionUrl: process.env.NEXT_PUBLIC_OPENSEA_COLLECTION_URL,
   };
+}
+
+export function getSupportedChainId() {
+  console.log("getSupportedChainId", getConfig().supportedChainId);
+  return getConfig().supportedChainId;
 }

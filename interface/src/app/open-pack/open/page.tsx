@@ -17,6 +17,7 @@ import { filterDrawingEvents } from "@/core/events/drawing";
 import { RequestSentParams } from "@/core/types";
 import { getConfig } from "@/config";
 import NFTSlide from "@/components/NFTSlide";
+import {getSupportedChainId} from "@/common";
 
 export default function Page() {
   const { address } = useAccount();
@@ -89,11 +90,11 @@ function OpenPackButton({
   } = useDrawingTxn("sendRequest");
 
   const handleChainChanged = useCallback(() => {
-    if (chain?.id === 43113) {
+    if (chain?.id === getSupportedChainId()) {
       console.log("same chain");
       return;
     }
-    switchNetwork?.(43113);
+    switchNetwork?.(getSupportedChainId());
   }, [switchNetwork, chain]);
 
   const handleOpenPack = useCallback(() => {
@@ -142,11 +143,11 @@ function OpenPackButton({
 
   useEffect(() => {
     if (status === OpenStatus.BeforeOpen) {
-      if (isConnected && chain?.id === 43113) {
+      if (isConnected && chain?.id === getSupportedChainId()) {
         setStatus(OpenStatus.Open);
       }
     } else {
-      if (!isConnected || chain?.id !== 43113) {
+      if (!isConnected || chain?.id !== getSupportedChainId()) {
         setStatus(OpenStatus.BeforeOpen);
       }
     }

@@ -15,6 +15,7 @@ import useCoinTxn from "@/hooks/useCoinTxn";
 import { useCoinAddress } from "@/hooks/useCoinAddress";
 import useCoinRead from "@/hooks/useCoinRead";
 import NFTSlide from "@/components/NFTSlide";
+import {getSupportedChainId} from "@/common";
 
 export default function Page() {
   const { packId } = getConfig();
@@ -229,7 +230,7 @@ function BuyStatusButton({
   } = useWaitForCCIP(11155111, senderHash);
   const handleHash = useCallback(
     (hash: `0x${string}`) => {
-      if (getChainId(network) === 43113) {
+      if (getChainId(network) === getSupportedChainId()) {
         setSenderHash(hash);
         setStatus(BuyStatus.AfterBuy);
       } else {
@@ -423,6 +424,10 @@ function BuyByNativeButton({
         //@ts-ignore
         submit?.({ args: [packId, amount], value: value });
         break;
+      case 5611:
+        //@ts-ignore
+        submit?.({ args: [packId, amount], value: value });
+        break;
       case 11155111:
         submit?.({
           args: [
@@ -495,7 +500,7 @@ function BuyByCoinButton({
 }: BuyByCoinButtonProps) {
   const { marketplaceReceiverAddress } = useAddresses();
   const { chain } = useNetwork();
-  const usdtAddress = useCoinAddress(coin, chain?.id || 43113);
+  const usdtAddress = useCoinAddress(coin, chain?.id || getSupportedChainId());
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const {
     hash,

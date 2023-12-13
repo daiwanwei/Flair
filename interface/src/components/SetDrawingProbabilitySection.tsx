@@ -10,6 +10,7 @@ import { TransactionAction } from "@/utils/transaction";
 import useDrawingTxn from "@/hooks/useDrawingTxn";
 import { filterDrawingEvents } from "@/core/events/drawing";
 import { SetDrawingPoolParams } from "@/core/types";
+import {getSupportedChainId} from "@/common";
 
 interface SetDrawingProbabilitySectionProps {
   poolName: string;
@@ -140,7 +141,7 @@ export default function SetDrawingProbabilitySection({
           <div className="w-[300px]">
             <SpecificChainButton
               isLoading={isLoading}
-              chainId={43113}
+              chainId={getSupportedChainId()}
               onClick={handleSetProbabilities}
             >
               Set Probabilities

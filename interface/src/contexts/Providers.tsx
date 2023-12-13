@@ -17,7 +17,7 @@ import {
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [avalanche, avalancheFuji,opBNB,opBNBTestnet],
+  [mainnet,avalanche, avalancheFuji,opBNB,opBNBTestnet],
   [publicProvider()],
 );
 
