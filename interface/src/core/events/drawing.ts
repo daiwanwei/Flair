@@ -1,12 +1,12 @@
-import { decodeEventLog, Log, parseAbi } from 'viem';
-import { mappingEvent } from '@/core/events/event';
+import { decodeEventLog, Log, parseAbi } from "viem";
+import { mappingEvent } from "@/core/events/event";
 import {
   EventData,
   RequestCompletedParams,
   RequestSentParams,
   SetDrawingPoolParams,
   SetUnitPoolParams,
-} from '@/core/types';
+} from "@/core/types";
 
 type DrawingEvent =
   | SetUnitPoolParams
@@ -16,35 +16,35 @@ type DrawingEvent =
 
 export function filterDrawingEvents(
   event: string,
-  logs: Log[]
+  logs: Log[],
 ): EventData<DrawingEvent> | null {
   const abi = parseAbi([
-    'event RequestSent(uint256 requestId, address requester)',
-    'event SetUnitPool(uint32 unitPoolID)',
-    'event SetDrawingPool(uint32 drawingPoolID)',
-    'event RequestCompleted(uint256 indexed requestId, address indexed requester)',
+    "event RequestSent(uint256 requestId, address requester)",
+    "event SetUnitPool(uint32 unitPoolID)",
+    "event SetDrawingPool(uint32 drawingPoolID)",
+    "event RequestCompleted(uint256 indexed requestId, address indexed requester)",
   ]);
-  let topic = '';
+  let topic = "";
   let mapping = null;
   switch (event) {
-    case 'RequestSent':
+    case "RequestSent":
       topic =
-        '0x48b98ad7a8a8dbe21cc82bf98710ad4d2cdd949ccac393692e4d9a1722c162c7';
+        "0x48b98ad7a8a8dbe21cc82bf98710ad4d2cdd949ccac393692e4d9a1722c162c7";
       mapping = mappingRequestSentParams;
       break;
-    case 'SetUnitPool':
+    case "SetUnitPool":
       topic =
-        '0xccfa93fc6dee2f7a59e08bd1a7bce043edec08ba7a9daa51aa4be9c95294acd6';
+        "0xccfa93fc6dee2f7a59e08bd1a7bce043edec08ba7a9daa51aa4be9c95294acd6";
       mapping = mappingSetUnitPoolParams;
       break;
-    case 'SetDrawingPool':
+    case "SetDrawingPool":
       topic =
-        '0x83b611e3a9f3ebea1fa1254d2c7535bd0733ed9b76a5a2b0da450d5ba399ecbd';
+        "0x83b611e3a9f3ebea1fa1254d2c7535bd0733ed9b76a5a2b0da450d5ba399ecbd";
       mapping = mappingSetDrawingPoolParams;
       break;
-    case 'RequestCompleted':
+    case "RequestCompleted":
       topic =
-        '0x83b611e3a9f3ebea1fa1254d2c7535bd0733ed9b76a5a2b0da450d5ba399ecbd';
+        "0x83b611e3a9f3ebea1fa1254d2c7535bd0733ed9b76a5a2b0da450d5ba399ecbd";
       mapping = mappingRequestCompletedParams;
       break;
     default:
@@ -67,7 +67,7 @@ export function filterDrawingEvents(
 }
 
 export function mappingSetUnitPoolParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): SetUnitPoolParams {
   return {
     //@ts-ignore
@@ -76,7 +76,7 @@ export function mappingSetUnitPoolParams(
 }
 
 export function mappingSetDrawingPoolParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): SetDrawingPoolParams {
   return {
     //@ts-ignore
@@ -85,7 +85,7 @@ export function mappingSetDrawingPoolParams(
 }
 
 export function mappingRequestCompletedParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): RequestCompletedParams {
   return {
     //@ts-ignore
@@ -96,7 +96,7 @@ export function mappingRequestCompletedParams(
 }
 
 export function mappingRequestSentParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): RequestSentParams {
   return {
     //@ts-ignore

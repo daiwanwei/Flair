@@ -1,11 +1,11 @@
-const SUBMITTED_TITLE = 'Submission successful';
-const SUBMITTED_DESCRIPTION = 'Submission successful';
-const CONFIRMED_TITLE = 'Confirmation successful';
-const CONFIRMED_DESCRIPTION = 'Confirmation successful';
-const SUBMIT_FAILED_TITLE = 'Submission failed';
-const SUBMIT_FAILED_DESCRIPTION = 'Submission failed';
-const CONFIRM_FAILED_TITLE = 'Confirmation failed';
-const CONFIRM_FAILED_DESCRIPTION = 'Confirmation failed';
+const SUBMITTED_TITLE = "Submission successful";
+const SUBMITTED_DESCRIPTION = "Submission successful";
+const CONFIRMED_TITLE = "Confirmation successful";
+const CONFIRMED_DESCRIPTION = "Confirmation successful";
+const SUBMIT_FAILED_TITLE = "Submission failed";
+const SUBMIT_FAILED_DESCRIPTION = "Submission failed";
+const CONFIRM_FAILED_TITLE = "Confirmation failed";
+const CONFIRM_FAILED_DESCRIPTION = "Confirmation failed";
 
 export enum TransactionStatus {
   SUBMITTED,
@@ -51,7 +51,7 @@ function _getTransactionInfo(status: TransactionStatus): MessageTemplate {
 
 export function getTransactionInfo(
   action: TransactionAction,
-  isFail: boolean
+  isFail: boolean,
 ): MessageTemplate {
   let status: TransactionStatus;
   if (action === TransactionAction.SUBMIT) {

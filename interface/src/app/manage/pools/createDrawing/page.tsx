@@ -1,11 +1,11 @@
-'use client';
-import { PrimaryButton } from '@/components/Button';
-import React, { useCallback, useEffect } from 'react';
-import SetDrawingProbabilitySection from '@/components/SetDrawingProbabilitySection';
-import { useRouter } from 'next/navigation';
-import { PoolProcessStatus } from '@/types';
-import { usePoolProcessStatusStore } from '@/stores/poolProcessStatus';
-import AddPoolButton from '@/components/AddPoolButton';
+"use client";
+import { PrimaryButton } from "@/components/Button";
+import React, { useCallback, useEffect } from "react";
+import SetDrawingProbabilitySection from "@/components/SetDrawingProbabilitySection";
+import { useRouter } from "next/navigation";
+import { PoolProcessStatus } from "@/types";
+import { usePoolProcessStatusStore } from "@/stores/poolProcessStatus";
+import AddPoolButton from "@/components/AddPoolButton";
 
 export default function Page() {
   const { status, updateStatus } = usePoolProcessStatusStore();
@@ -15,11 +15,11 @@ export default function Page() {
     setIsLoading(l);
   }, []);
   const handleNextStep = () => {
-    router.push('/manage/pools/final');
+    router.push("/manage/pools/final");
   };
   const poolNames = [
-    'Drawing Pool A: Normal Card Pack',
-    'Drawing Pool B: Special Card Pack',
+    "Drawing Pool A: Normal Card Pack",
+    "Drawing Pool B: Special Card Pack",
   ];
   const [poolAmount, setPoolAmount] = React.useState(2);
   useEffect(() => {
@@ -28,8 +28,8 @@ export default function Page() {
     }
   }, [status]);
   return (
-    <div className='flex flex-col justify-start'>
-      <div className='mt-[38px] flex w-[950px] flex-col gap-4'>
+    <div className="flex flex-col justify-start">
+      <div className="mt-[38px] flex w-[950px] flex-col gap-4">
         {poolNames.slice(0, poolAmount).map((poolName, index) => {
           return (
             <SetDrawingProbabilitySection
@@ -40,7 +40,7 @@ export default function Page() {
           );
         })}
       </div>
-      <div className='mt-[23px] w-[300px]'>
+      <div className="mt-[23px] w-[300px]">
         <PrimaryButton loading={isLoading} onClick={handleNextStep}>
           Next Step
         </PrimaryButton>

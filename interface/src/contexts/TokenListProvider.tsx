@@ -1,7 +1,7 @@
-'use client';
-import { TokenListContext } from '@/hooks/useTokenList';
-import { ReactNode, useEffect, useState } from 'react';
-import useDrawingRead from '@/hooks/useDrawingRead';
+"use client";
+import { TokenListContext } from "@/hooks/useTokenList";
+import { ReactNode, useEffect, useState } from "react";
+import useDrawingRead from "@/hooks/useDrawingRead";
 
 interface TokenListProviderProps {
   children: ReactNode;
@@ -10,9 +10,9 @@ interface TokenListProviderProps {
 export function TokenListProvider({ children }: TokenListProviderProps) {
   const [tokenList, setTokenList] = useState<bigint[]>([]);
   const { data, isLoading, error } = useDrawingRead(
-    'getTokenPoolInfo',
+    "getTokenPoolInfo",
     [],
-    false
+    false,
   );
   console.log(data);
   useEffect(() => {

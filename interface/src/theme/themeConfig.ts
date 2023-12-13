@@ -7,7 +7,7 @@ const theme: ThemeConfig = {
     colorText: "#FFFFFF",
     colorBgElevated: "rgb(75 85 99)",
     colorSplit: "#f0f0f0",
-    colorBgContainer: '#f6ffed',
+    colorBgContainer: "#f6ffed",
   },
   components: {
     Modal: {

@@ -8,7 +8,7 @@ import React from "react";
 import { Providers } from "@/contexts/Providers";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
-import {TokenListProvider} from "@/contexts/TokenListProvider";
+import { TokenListProvider } from "@/contexts/TokenListProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,9 +27,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ConfigProvider theme={theme}>
             <Providers>
-              <TokenListProvider>
-                {children}
-              </TokenListProvider>
+              <TokenListProvider>{children}</TokenListProvider>
             </Providers>
           </ConfigProvider>
         </StyledComponentsRegistry>

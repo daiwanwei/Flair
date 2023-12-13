@@ -1,7 +1,7 @@
-import { Card, Input, InputNumber } from 'antd';
-import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
-import Icon from '@ant-design/icons';
+import { Card, Input, InputNumber } from "antd";
+import styled from "styled-components";
+import { useCallback, useEffect, useState } from "react";
+import Icon from "@ant-design/icons";
 
 interface CountInputCardProps {
   defaultValue?: string;
@@ -15,7 +15,7 @@ export default function CountInputCard({
   defaultValue,
 }: CountInputCardProps) {
   const [isInfinite, setIsInfinite] = useState(false);
-  const infinite = 'Unlimited';
+  const infinite = "Unlimited";
   const handleChange = useCallback(
     (value: string) => {
       if (value === infinite) {
@@ -26,7 +26,7 @@ export default function CountInputCard({
         onChange?.(value);
       }
     },
-    [onChange]
+    [onChange],
   );
   const handleClickInfinite = useCallback(() => {
     setIsInfinite(true);
@@ -35,20 +35,20 @@ export default function CountInputCard({
   return (
     <BaseCard
       bodyStyle={{
-        paddingTop: '0px',
-        paddingBottom: '0px',
-        paddingLeft: '0px',
-        paddingRight: '0px',
+        paddingTop: "0px",
+        paddingBottom: "0px",
+        paddingLeft: "0px",
+        paddingRight: "0px",
         width: `100%`,
         height: `100%`,
       }}
     >
-      <div className='flex h-[100%] w-[100%] flex-col items-center justify-between'>
+      <div className="flex h-[100%] w-[100%] flex-col items-center justify-between">
         {children}
-        <div className='flex h-[40px] w-[100%] items-center border-t-[1px] border-solid border-[#374151]'>
-          <div className='inline-flex w-[100%] items-center justify-between p-2'>
+        <div className="flex h-[40px] w-[100%] items-center border-t-[1px] border-solid border-[#374151]">
+          <div className="inline-flex w-[100%] items-center justify-between p-2">
             <Input
-              className='border-0 bg-[#111827] text-[10px] text-white'
+              className="border-0 bg-[#111827] text-[10px] text-white"
               onChange={(e) => {
                 handleChange(e.target.value);
               }}
@@ -56,7 +56,7 @@ export default function CountInputCard({
               value={isInfinite ? infinite : undefined}
             />
             <Icon
-              component={() => <img src='/infinite.svg' width={25} />}
+              component={() => <img src="/infinite.svg" width={25} />}
               onClick={handleClickInfinite}
             />
           </div>
@@ -72,4 +72,4 @@ const BaseCard = styled(Card)`
   background: #111827;
 `;
 
-const MAX_UINT32 = BigInt('4294967295');
+const MAX_UINT32 = BigInt("4294967295");

@@ -1,8 +1,7 @@
-
-import { useContractWrite, useWaitForTransaction } from 'wagmi';
-import { useEffect, useMemo, useRef } from 'react';
-import { Hash } from 'viem';
-import useCoinWrite from '@/hooks/useCoinWrite';
+import { useContractWrite, useWaitForTransaction } from "wagmi";
+import { useEffect, useMemo, useRef } from "react";
+import { Hash } from "viem";
+import useCoinWrite from "@/hooks/useCoinWrite";
 
 export default function useCoinTxn(coin: string, fn: string) {
   const hashRef = useRef<Hash>();

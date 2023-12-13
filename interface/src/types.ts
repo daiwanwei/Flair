@@ -1,4 +1,4 @@
-import { Address } from 'abitype';
+import { Address } from "abitype";
 
 export interface RequestSentReceipt {
   requestId: bigint;

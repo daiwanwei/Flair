@@ -1,16 +1,16 @@
-import useDrawingConfig from '@/hooks/useDrawingConfig';
-import { useContractRead, useContractReads, useContractWrite } from 'wagmi';
-import { parseAbi } from 'viem';
-import { QueryResult } from '@/types';
-import DRAWING_ABI from '@/abis/Drawing.json';
-import { DrawingPoolInfo } from '@/core/types';
-import useMarketplaceConfig from '@/hooks/useMarketplaceConfig';
+import useDrawingConfig from "@/hooks/useDrawingConfig";
+import { useContractRead, useContractReads, useContractWrite } from "wagmi";
+import { parseAbi } from "viem";
+import { QueryResult } from "@/types";
+import DRAWING_ABI from "@/abis/Drawing.json";
+import { DrawingPoolInfo } from "@/core/types";
+import useMarketplaceConfig from "@/hooks/useMarketplaceConfig";
 
 export default function useMarketplaceRead(
   fn: string,
   args: any = [],
   chainId: number,
-  watch = true
+  watch = true,
 ): QueryResult<DrawingRead> {
   const config = useMarketplaceConfig();
   let address;
@@ -27,7 +27,7 @@ export default function useMarketplaceRead(
   const marketplaceConfig = {
     address: address,
     abi: parseAbi([
-      'function getPackConvertedNativePrice(uint32 _packID) public view returns(uint256)',
+      "function getPackConvertedNativePrice(uint32 _packID) public view returns(uint256)",
     ]),
     chainId: chainId,
   };
@@ -55,7 +55,7 @@ type DrawingRead = bigint & any;
 
 function mappingResult(fn: string, result: any): DrawingRead {
   switch (fn) {
-    case 'getPackConvertedNativePrice':
+    case "getPackConvertedNativePrice":
       return BigInt(result);
     default:
       return result;

@@ -1,7 +1,7 @@
-import { useAddresses } from '@/hooks/useAddresses';
-import { parseAbi } from 'viem';
-import { useNetwork } from 'wagmi';
-import { useMemo } from 'react';
+import { useAddresses } from "@/hooks/useAddresses";
+import { parseAbi } from "viem";
+import { useNetwork } from "wagmi";
+import { useMemo } from "react";
 export default function useCoinConfig() {
   const { avaxUsdtAddress, ethUsdtAddress } = useAddresses();
   const { chain } = useNetwork();
@@ -18,8 +18,8 @@ export default function useCoinConfig() {
   return {
     usdtAddress: usdtAddress,
     abi: parseAbi([
-      'function allowance(address owner, address spender) returns (uint256)',
-      'function approve(address spender, uint256 value) returns (bool)',
+      "function allowance(address owner, address spender) returns (uint256)",
+      "function approve(address spender, uint256 value) returns (bool)",
     ]),
   };
 }

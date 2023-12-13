@@ -1,15 +1,15 @@
-import EditPoolInput from '@/components/EditPoolInput';
-import { AddCard } from '@/components/AddCard';
-import { SpecificChainButton } from '@/components/Button';
-import React, { useCallback, useEffect, useMemo } from 'react';
-import ProbabilityInputCard from '@/components/ProbabilityInputCard';
-import { useUnitPoolStore } from '@/stores/unitPool';
-import { useDrawingPoolStore } from '@/stores/drawingPool';
-import useTxnNotify from '@/hooks/useTxnNotify';
-import { TransactionAction } from '@/utils/transaction';
-import useDrawingTxn from '@/hooks/useDrawingTxn';
-import { filterDrawingEvents } from '@/core/events/drawing';
-import { SetDrawingPoolParams } from '@/core/types';
+import EditPoolInput from "@/components/EditPoolInput";
+import { AddCard } from "@/components/AddCard";
+import { SpecificChainButton } from "@/components/Button";
+import React, { useCallback, useEffect, useMemo } from "react";
+import ProbabilityInputCard from "@/components/ProbabilityInputCard";
+import { useUnitPoolStore } from "@/stores/unitPool";
+import { useDrawingPoolStore } from "@/stores/drawingPool";
+import useTxnNotify from "@/hooks/useTxnNotify";
+import { TransactionAction } from "@/utils/transaction";
+import useDrawingTxn from "@/hooks/useDrawingTxn";
+import { filterDrawingEvents } from "@/core/events/drawing";
+import { SetDrawingPoolParams } from "@/core/types";
 
 interface SetDrawingProbabilitySectionProps {
   poolName: string;
@@ -28,25 +28,25 @@ export default function SetDrawingProbabilitySection({
     () =>
       defaultPool?.probabilities ||
       Array.from({ length: unitPools.list.length }, () => 0),
-    [unitPools.list.length]
+    [unitPools.list.length],
   );
   const [probabilityList, setProbabilityList] =
     React.useState<number[]>(poolProbabilityList);
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const handleSetProbabilities = useCallback(() => {
-    console.log('setProbabilities');
+    console.log("setProbabilities");
     const total = probabilityList.reduce((a, b) => a + b, 0);
     if (total !== 100) {
       api.error({
-        message: 'Error',
-        description: 'The sum of probabilities must be 100',
+        message: "Error",
+        description: "The sum of probabilities must be 100",
       });
       return;
     }
     const unitPoolIds = unitPools.list.map((name) =>
-      BigInt(getUnitPool(name)?.id || 0)
+      BigInt(getUnitPool(name)?.id || 0),
     );
-    console.log('submit unitPoolIds', unitPoolIds, probabilityList);
+    console.log("submit unitPoolIds", unitPoolIds, probabilityList);
     //@ts-ignore
     submit?.({ args: [unitPoolIds, probabilityList.map((i) => i * 10)] });
   }, [poolId, add, probabilityList]);
@@ -61,14 +61,14 @@ export default function SetDrawingProbabilitySection({
     isConfirmError,
     confirmData,
     isLoading,
-  } = useDrawingTxn('setDrawingPool');
+  } = useDrawingTxn("setDrawingPool");
   console.log(getPool(poolName));
   const handleUpdateProbability = useCallback(
     (index: number, value: number) => {
       probabilityList[index] = value;
       setProbabilityList(probabilityList);
     },
-    [probabilityList]
+    [probabilityList],
   );
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function SetDrawingProbabilitySection({
       TransactionAction.SUBMIT,
       isSubmitError,
       isSubmitSuccess,
-      submitError
+      submitError,
     );
   }, [isSubmitError, isSubmitSuccess, submitError]);
   useEffect(() => {
@@ -84,13 +84,13 @@ export default function SetDrawingProbabilitySection({
       TransactionAction.CONFIRM,
       isConfirmError,
       isConfirmSuccess,
-      confirmError
+      confirmError,
     );
   }, [isConfirmError, isConfirmSuccess, confirmError]);
   useEffect(() => {
     if (confirmData) {
-      const event = filterDrawingEvents('SetDrawingPool', confirmData.logs);
-      console.log('confirmData', event);
+      const event = filterDrawingEvents("SetDrawingPool", confirmData.logs);
+      console.log("confirmData", event);
       if (event) {
         add({
           id: (event.args as SetDrawingPoolParams).drawingPoolID.toString(),
@@ -107,17 +107,17 @@ export default function SetDrawingProbabilitySection({
     <>
       {contextHolder}
       <div>
-        <div className='flex flex-col gap-4'>
-          <div className='w-[300px]'>
+        <div className="flex flex-col gap-4">
+          <div className="w-[300px]">
             <EditPoolInput>{poolName}</EditPoolInput>
           </div>
-          <div className='grid grid-flow-dense grid-cols-8 gap-2'>
-            <div className='h-[122px] w-[110px]'>
+          <div className="grid grid-flow-dense grid-cols-8 gap-2">
+            <div className="h-[122px] w-[110px]">
               <AddCard>Add Unit</AddCard>
             </div>
             {unitPools.list.map((name, index) => {
               return (
-                <div className='w-[110px]' key={index}>
+                <div className="w-[110px]" key={index}>
                   <ProbabilityInputCard
                     defaultValue={poolProbabilityList[index]}
                     onChange={(v) => {
@@ -127,7 +127,7 @@ export default function SetDrawingProbabilitySection({
                       }
                     }}
                   >
-                    <div className='mt-1 flex h-[76px] w-[100%] items-center px-2'>
+                    <div className="mt-1 flex h-[76px] w-[100%] items-center px-2">
                       <div className="font-['Source Sans Pro'] text-[14px] text-white">
                         {name}
                       </div>
@@ -137,7 +137,7 @@ export default function SetDrawingProbabilitySection({
               );
             })}
           </div>
-          <div className='w-[300px]'>
+          <div className="w-[300px]">
             <SpecificChainButton
               isLoading={isLoading}
               chainId={43113}

@@ -1,23 +1,23 @@
-import { decodeEventLog, parseAbi, PublicClient } from 'viem';
-import VRFCOORDINATOR_V2_ABI from '@/abis/VRFCoordinatorV2.json';
-import VRF_MANAGER_ABI from '@/abis/VRFManager.json';
-import DRAWING_ABI from '@/abis/Drawing.json';
-import { Address } from 'abitype';
-import { Hash, Log } from 'viem';
+import { decodeEventLog, parseAbi, PublicClient } from "viem";
+import VRFCOORDINATOR_V2_ABI from "@/abis/VRFCoordinatorV2.json";
+import VRF_MANAGER_ABI from "@/abis/VRFManager.json";
+import DRAWING_ABI from "@/abis/Drawing.json";
+import { Address } from "abitype";
+import { Hash, Log } from "viem";
 import {
   EventData,
   GetEventParams,
   RandomWordsFulfilledParams,
   RequestCompletedParams,
   RequestSentParams,
-} from '@/core/types';
+} from "@/core/types";
 
 export async function getEvent<A, T>(
   client: PublicClient,
   params: GetEventParams<A>,
-  mapper: (a: readonly unknown[] | Record<string, unknown>) => T
+  mapper: (a: readonly unknown[] | Record<string, unknown>) => T,
 ): Promise<EventData<T>[]> {
-  console.log('params', params);
+  console.log("params", params);
   console.log(await client.getChainId());
   const config = {
     address: params.address,
@@ -29,18 +29,18 @@ export async function getEvent<A, T>(
   };
   //@ts-ignore
   const event = await client.getContractEvents({ ...config });
-  console.log('event', event);
+  console.log("event", event);
   return event.map((e) => mappingEvent(e, mapper));
 }
 
 export async function getRandomWordsFulfilledEventsByRequestIds(
   client: PublicClient,
-  params: GetEventParams<{ requestId: bigint[] }>
+  params: GetEventParams<{ requestId: bigint[] }>,
 ): Promise<EventData<RandomWordsFulfilledParams>[]> {
   const config = {
     address: params.address,
     abi: VRFCOORDINATOR_V2_ABI,
-    eventName: 'RandomWordsFulfilled',
+    eventName: "RandomWordsFulfilled",
     args: params.args,
     fromBlock: params.fromBlock,
     toBlock: params.toBlock,
@@ -54,12 +54,12 @@ export function watchRandomWordsFulfilledEventsByRequestIds(
   client: PublicClient,
   vrfCoordinatorAddress: Address,
   requestIds: bigint[],
-  listener: (e: EventData<RandomWordsFulfilledParams>) => void
+  listener: (e: EventData<RandomWordsFulfilledParams>) => void,
 ) {
   const config = {
     address: vrfCoordinatorAddress,
     abi: VRFCOORDINATOR_V2_ABI,
-    eventName: 'RandomWordsFulfilled',
+    eventName: "RandomWordsFulfilled",
     args: {
       requestId: requestIds,
     },
@@ -75,12 +75,12 @@ export function watchRandomWordsFulfilledEventsByRequestIds(
 
 export async function getRequestCompletedEventsByRequestIds(
   client: PublicClient,
-  params: GetEventParams<{ requestId: bigint[] }>
+  params: GetEventParams<{ requestId: bigint[] }>,
 ): Promise<EventData<RequestCompletedParams>[]> {
   const config = {
     address: params.address,
     abi: DRAWING_ABI,
-    eventName: 'RequestCompleted',
+    eventName: "RequestCompleted",
     args: params.args,
     fromBlock: params.fromBlock,
     toBlock: params.toBlock,
@@ -95,12 +95,12 @@ export function watchRequestCompletedEventsByRequestIds(
   client: PublicClient,
   fomoAddress: Address,
   requestIds: bigint[],
-  listener: (e: EventData<RequestCompletedParams>) => void
+  listener: (e: EventData<RequestCompletedParams>) => void,
 ) {
   const config = {
     address: fomoAddress,
     abi: DRAWING_ABI,
-    eventName: 'RequestCompleted',
+    eventName: "RequestCompleted",
     args: {
       requestId: requestIds,
     },
@@ -131,7 +131,7 @@ export function watchRequestCompletedEventsByRequestIds(
 // }
 
 export function filterRequestSentEvents(
-  logs: Log[]
+  logs: Log[],
 ): EventData<RequestSentParams> | null {
   for (const e of logs) {
     const eventTopic = e.topics[0];
@@ -151,7 +151,7 @@ export function filterRequestSentEvents(
 
 export function mappingEvent<T>(
   e: Log,
-  argsMapper: (a: readonly unknown[] | Record<string, unknown>) => T
+  argsMapper: (a: readonly unknown[] | Record<string, unknown>) => T,
 ): EventData<T> {
   return {
     address: e.address as Address,
@@ -165,7 +165,7 @@ export function mappingEvent<T>(
 }
 
 export function mappingRandomWordsFulfilledParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): RandomWordsFulfilledParams {
   return {
     //@ts-ignore
@@ -179,7 +179,7 @@ export function mappingRandomWordsFulfilledParams(
   } as RandomWordsFulfilledParams;
 }
 export function mappingRequestSentParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): RequestSentParams {
   return {
     //@ts-ignore
@@ -188,7 +188,7 @@ export function mappingRequestSentParams(
 }
 
 export function mappingRequestCompletedParams(
-  a: readonly unknown[] | Record<string, unknown>
+  a: readonly unknown[] | Record<string, unknown>,
 ): RequestCompletedParams {
   return {
     //@ts-ignore
@@ -199,4 +199,4 @@ export function mappingRequestCompletedParams(
 }
 
 const REQUEST_SENT_TOPIC =
-  '0x48b98ad7a8a8dbe21cc82bf98710ad4d2cdd949ccac393692e4d9a1722c162c7';
+  "0x48b98ad7a8a8dbe21cc82bf98710ad4d2cdd949ccac393692e4d9a1722c162c7";

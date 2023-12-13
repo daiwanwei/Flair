@@ -1,19 +1,18 @@
-
-import { useContractRead} from 'wagmi';
-import { QueryResult } from '@/types';
-import useCoinConfig from '@/hooks/useCoinConfig';
-import { useMemo } from 'react';
+import { useContractRead } from "wagmi";
+import { QueryResult } from "@/types";
+import useCoinConfig from "@/hooks/useCoinConfig";
+import { useMemo } from "react";
 
 export default function useCoinRead(
   coin: string,
   fn: string,
   args: any = [],
-  watch = true
+  watch = true,
 ): QueryResult<CoinRead> {
   const config = useCoinConfig();
   const address = useMemo(() => {
     switch (coin) {
-      case 'USDT':
+      case "USDT":
         return config.usdtAddress;
       default:
         return config.usdtAddress;
@@ -47,7 +46,7 @@ type CoinRead = bigint & bigint[] & Number & any;
 
 function mappingResult(fn: string, result: any): CoinRead {
   switch (fn) {
-    case 'allowance':
+    case "allowance":
       return BigInt(result);
     default:
       return result;

@@ -1,9 +1,6 @@
-import {
-  getTransactionInfo,
-  TransactionAction,
-} from '@/utils/transaction';
-import { useCallback } from 'react';
-import { notification } from 'antd';
+import { getTransactionInfo, TransactionAction } from "@/utils/transaction";
+import { useCallback } from "react";
+import { notification } from "antd";
 
 export default function useTxnNotify() {
   const [api, contextHolder] = notification.useNotification();
@@ -16,7 +13,7 @@ export default function useTxnNotify() {
         duration: 3,
       });
     },
-    [api]
+    [api],
   );
   const openNotificationSimple = useCallback(
     (title: string) => {
@@ -25,7 +22,7 @@ export default function useTxnNotify() {
         duration: 3,
       });
     },
-    [api]
+    [api],
   );
 
   const handleTxnResponse = useCallback(
@@ -33,7 +30,7 @@ export default function useTxnNotify() {
       action: TransactionAction,
       isError: boolean,
       isSuccess: boolean,
-      error: Error | null
+      error: Error | null,
     ) => {
       const { title, description } = getTransactionInfo(action, isError);
       if (isError) {
@@ -48,7 +45,7 @@ export default function useTxnNotify() {
         openNotificationSimple(title);
       }
     },
-    [openNotification, openNotificationSimple]
+    [openNotification, openNotificationSimple],
   );
   return { handleTxnResponse, api, contextHolder };
 }

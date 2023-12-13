@@ -1,5 +1,5 @@
-import useDrawingConfig from '@/hooks/useDrawingConfig';
-import { useContractWrite } from 'wagmi';
+import useDrawingConfig from "@/hooks/useDrawingConfig";
+import { useContractWrite } from "wagmi";
 
 export default function useDrawingWrite(fn: string) {
   const config = useDrawingConfig();

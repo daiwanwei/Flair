@@ -1,5 +1,5 @@
-import { Address } from 'wagmi';
-import { useAddresses } from '@/hooks/useAddresses';
+import { Address } from "wagmi";
+import { useAddresses } from "@/hooks/useAddresses";
 
 export function useCoinAddress(coin: string, chainId: number): Address {
   const { avaxUsdtAddress, ethUsdtAddress } = useAddresses();

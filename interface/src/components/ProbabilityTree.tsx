@@ -1,9 +1,9 @@
-import { Tooltip, Tree } from 'antd';
-import React, { useMemo } from 'react';
-import styled from 'styled-components';
-import { useDrawingPoolStore } from '@/stores/drawingPool';
-import { useUnitPoolStore } from '@/stores/unitPool';
-import { TOKEN_LIST } from '@/types';
+import { Tooltip, Tree } from "antd";
+import React, { useMemo } from "react";
+import styled from "styled-components";
+import { useDrawingPoolStore } from "@/stores/drawingPool";
+import { useUnitPoolStore } from "@/stores/unitPool";
+import { TOKEN_LIST } from "@/types";
 
 export default function ProbabilityTree() {
   const { pools: drawingPools, getPool: getDrawingPool } =
@@ -12,12 +12,12 @@ export default function ProbabilityTree() {
   const drawingPoolNames = useMemo(() => drawingPools.list, [drawingPools]);
   const unitPoolNames = useMemo(() => unitPools.list, [unitPools]);
   const tokenIDNames = TOKEN_LIST.map((item) => {
-    return `ID-${item.toString().padStart(3, '0')}`;
+    return `ID-${item.toString().padStart(3, "0")}`;
   });
   const data = drawingPoolNames.map((poolName, index) => {
     return {
       key: `0-${index}`,
-      title: <Title className='text-[20px]'>{poolName}</Title>,
+      title: <Title className="text-[20px]">{poolName}</Title>,
       children: unitPoolNames.map((unitPoolName, index2) => {
         const probabilities =
           getDrawingPool(poolName)?.probabilities ||
@@ -25,9 +25,9 @@ export default function ProbabilityTree() {
         return {
           key: `0-${index}-${index2}`,
           title: (
-            <Title className='text-[16px]'>
-              {unitPoolName}{' '}
-              <span className='text-[#ADC0F8]'>{probabilities[index2]}%</span>
+            <Title className="text-[16px]">
+              {unitPoolName}{" "}
+              <span className="text-[#ADC0F8]">{probabilities[index2]}%</span>
             </Title>
           ),
           children: tokenIDNames.map((tokenIDName, index3) => {
@@ -37,9 +37,9 @@ export default function ProbabilityTree() {
             return {
               key: `0-${index}-${index2}-${index3}`,
               title: (
-                <Title className='text-[12px]'>
-                  {tokenIDName}{' '}
-                  <span className='text-[#ADC0F8]'>
+                <Title className="text-[12px]">
+                  {tokenIDName}{" "}
+                  <span className="text-[#ADC0F8]">
                     {probabilities[index3]}%
                   </span>
                 </Title>
@@ -52,9 +52,9 @@ export default function ProbabilityTree() {
   });
   return (
     <Tree
-      className='bg-gray-800'
+      className="bg-gray-800"
       treeData={data}
-      defaultExpandedKeys={['0-0', '0-1', '0-0-0']}
+      defaultExpandedKeys={["0-0", "0-1", "0-0-0"]}
       titleRender={(item) => (
         <Tooltip title={item.title as any}>{item.title as any}</Tooltip>
       )}
@@ -62,9 +62,9 @@ export default function ProbabilityTree() {
   );
 }
 
-const Title = styled('div')`
+const Title = styled("div")`
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   //font-size: 20px;
   font-style: normal;
   font-weight: 700;

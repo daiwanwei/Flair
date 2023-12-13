@@ -1,12 +1,12 @@
-import { AddCard } from '@/components/AddCard';
-import { SpecificChainButton } from '@/components/Button';
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { TransactionAction } from '@/utils/transaction';
-import useTxnNotify from '@/hooks/useTxnNotify';
-import { NFTProfile } from '@/components/NFTProfile';
-import useDrawingTxn from '@/hooks/useDrawingTxn';
-import CountInputCard from '@/components/CountInputCard';
-import { useTokenList } from '@/hooks/useTokenList';
+import { AddCard } from "@/components/AddCard";
+import { SpecificChainButton } from "@/components/Button";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { TransactionAction } from "@/utils/transaction";
+import useTxnNotify from "@/hooks/useTxnNotify";
+import { NFTProfile } from "@/components/NFTProfile";
+import useDrawingTxn from "@/hooks/useDrawingTxn";
+import CountInputCard from "@/components/CountInputCard";
+import { useTokenList } from "@/hooks/useTokenList";
 
 interface SetPoolCountSectionProps {
   onLoading?: (isLoading: boolean) => void;
@@ -18,16 +18,16 @@ export default function SetPoolCountSection({
   const { tokenList } = useTokenList();
 
   const [countList, setCountList] = React.useState<bigint[]>(
-    Array.from({ length: 7 }, () => BigInt(0))
+    Array.from({ length: 7 }, () => BigInt(0)),
   );
-  console.log(countList,tokenList);
+  console.log(countList, tokenList);
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const handleUpdateCount = useCallback(
     (index: number, value: string) => {
       try {
         const v = BigInt(value);
         if (v > MAX_UINT32) {
-          throw new Error('value too large');
+          throw new Error("value too large");
         }
         countList[index] = v;
         console.log(countList);
@@ -35,15 +35,15 @@ export default function SetPoolCountSection({
       } catch (e) {
         console.log(e);
         api.error({
-          message: 'Error',
-          description: 'value invalid: v, Error: ' + e,
+          message: "Error",
+          description: "value invalid: v, Error: " + e,
         });
       }
     },
-    [countList]
+    [countList],
   );
   const handleSetCount = useCallback(() => {
-    console.log('setCount');
+    console.log("setCount");
     console.log(countList);
     submit?.({
       //@ts-ignore
@@ -62,14 +62,14 @@ export default function SetPoolCountSection({
     isConfirmSuccess,
     isConfirmError,
     isLoading,
-  } = useDrawingTxn('setTokenMaxAmount');
+  } = useDrawingTxn("setTokenMaxAmount");
 
   useEffect(() => {
     handleTxnResponse(
       TransactionAction.SUBMIT,
       isSubmitError,
       isSubmitSuccess,
-      submitError
+      submitError,
     );
   }, [isSubmitError, isSubmitSuccess, submitError]);
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function SetPoolCountSection({
       TransactionAction.CONFIRM,
       isConfirmError,
       isConfirmSuccess,
-      confirmError
+      confirmError,
     );
   }, [isConfirmError, isConfirmSuccess, confirmError]);
 
@@ -88,30 +88,31 @@ export default function SetPoolCountSection({
     <>
       {contextHolder}
       <div>
-        <div className='flex flex-col gap-4'>
-          <div className='grid grid-flow-dense grid-cols-8 gap-2'>
-            <div className='h-[220px] w-[110px]'>
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-flow-dense grid-cols-8 gap-2">
+            <div className="h-[220px] w-[110px]">
               <AddCard>Add NFT</AddCard>
             </div>
-            {tokenList && tokenList.map((item, index) => {
-              return (
-                <div className='h-[220px] w-[110px]' key={index}>
-                  <CountInputCard
-                    defaultValue={'0'}
-                    onChange={(v) => {
-                      if (v && v !== '') {
-                        console.log(v);
-                        handleUpdateCount(index, v);
-                      }
-                    }}
-                  >
-                    <NFTProfile tokenId={item} />
-                  </CountInputCard>
-                </div>
-              );
-            })}
+            {tokenList &&
+              tokenList.map((item, index) => {
+                return (
+                  <div className="h-[220px] w-[110px]" key={index}>
+                    <CountInputCard
+                      defaultValue={"0"}
+                      onChange={(v) => {
+                        if (v && v !== "") {
+                          console.log(v);
+                          handleUpdateCount(index, v);
+                        }
+                      }}
+                    >
+                      <NFTProfile tokenId={item} />
+                    </CountInputCard>
+                  </div>
+                );
+              })}
           </div>
-          <div className='w-[300px]'>
+          <div className="w-[300px]">
             <SpecificChainButton
               isLoading={isLoading}
               chainId={43113}
@@ -126,4 +127,4 @@ export default function SetPoolCountSection({
   );
 }
 
-const MAX_UINT32 = BigInt('4294967295');
+const MAX_UINT32 = BigInt("4294967295");

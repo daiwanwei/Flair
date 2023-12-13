@@ -1,5 +1,5 @@
-import { Card, Input, InputNumber } from 'antd';
-import styled from 'styled-components';
+import { Card, Input, InputNumber } from "antd";
+import styled from "styled-components";
 
 interface ProbabilityInputCardProps {
   defaultValue?: number;
@@ -15,25 +15,25 @@ export default function ProbabilityInputCard({
   return (
     <BaseCard
       bodyStyle={{
-        paddingTop: '0px',
-        paddingBottom: '0px',
-        paddingLeft: '0px',
-        paddingRight: '0px',
+        paddingTop: "0px",
+        paddingBottom: "0px",
+        paddingLeft: "0px",
+        paddingRight: "0px",
         width: `100%`,
         height: `100%`,
       }}
     >
-      <div className='flex h-[100%] w-[100%] flex-col items-center justify-between'>
+      <div className="flex h-[100%] w-[100%] flex-col items-center justify-between">
         {children}
-        <div className='flex h-[40px] w-[100%] items-center border-t-[1px] border-solid border-[#374151]'>
-          <div className='inline-flex w-[100%] items-center justify-between p-2'>
+        <div className="flex h-[40px] w-[100%] items-center border-t-[1px] border-solid border-[#374151]">
+          <div className="inline-flex w-[100%] items-center justify-between p-2">
             <InputNumber
-              className='border-0 bg-[#111827] text-white'
+              className="border-0 bg-[#111827] text-white"
               onChange={onChange}
               defaultValue={defaultValue || 0}
               precision={1}
             />
-            <div className='text-white'>%</div>
+            <div className="text-white">%</div>
           </div>
         </div>
       </div>

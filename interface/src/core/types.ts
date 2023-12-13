@@ -1,5 +1,5 @@
-import { Address } from 'abitype';
-import { Hash } from 'viem';
+import { Address } from "abitype";
+import { Hash } from "viem";
 
 export interface GetEventParams<T> {
   address: Address;
@@ -7,7 +7,7 @@ export interface GetEventParams<T> {
   abi: unknown[];
   args: T;
   fromBlock?: bigint;
-  toBlock?: bigint | 'latest';
+  toBlock?: bigint | "latest";
 }
 
 export interface EventData<T> {

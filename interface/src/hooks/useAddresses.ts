@@ -1,5 +1,5 @@
-import { Address } from 'wagmi';
-import { getConfig } from '@/config';
+import { Address } from "wagmi";
+import { getConfig } from "@/config";
 
 export interface Addresses {
   drawingAddress: Address;

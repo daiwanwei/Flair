@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { PoolProcessStatus } from '@/types';
+import { create } from "zustand";
+import { PoolProcessStatus } from "@/types";
 
 type PoolProcessStatusStore = {
   status: PoolProcessStatus;
@@ -11,5 +11,5 @@ export const usePoolProcessStatusStore = create<PoolProcessStatusStore>(
     status: PoolProcessStatus.SelectNFT,
     updateStatus: (status: PoolProcessStatus) =>
       set((state) => ({ status: status })),
-  })
+  }),
 );
