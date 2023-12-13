@@ -23,7 +23,7 @@ export function useAddresses(): Addresses {
     marketplaceSenderAddress: config.marketplaceSenderAddress as Address,
     marketplaceReceiverAddress: config.marketplaceReceiverAddress as Address,
     avaxUsdtAddress: config.avaxUsdtAddress as Address,
-    opbnbUsdtAddress: config.avaxUsdtAddress as Address,
+    opbnbUsdtAddress: config.opbnbUsdtAddress as Address,
     ethUsdtAddress: config.ethUsdtAddress as Address,
   };
 }
