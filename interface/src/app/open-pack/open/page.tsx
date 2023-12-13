@@ -24,6 +24,7 @@ export default function Page() {
   const { packId, specialPackId, drawingPoolId, specialDrawingPoolId } =
     getConfig();
   const { data } = useDrawingRead("usersDrawable", [address, drawingPoolId]);
+  console.log(`usersDrawable:`, data, address, drawingPoolId);
   const [poolAmount, setPoolAmount] = useState<number>(0);
   const packAmount = useMemo(() => {
     return poolAmount / 5;
@@ -41,9 +42,9 @@ export default function Page() {
         </div>
         <div className="flex h-[60px] w-[383px] flex-col justify-between gap-4">
           <OpenPackButton
-            packId={packId}
-            poolAmount={poolAmount}
-            packAmount={packAmount}
+            packId={drawingPoolId}
+            poolAmount={3}
+            packAmount={1}
           >{`OPEN ${packAmount} PACKS*`}</OpenPackButton>
         </div>
       </div>
