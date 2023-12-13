@@ -501,6 +501,7 @@ function BuyByCoinButton({
   const { marketplaceReceiverAddress } = useAddresses();
   const { chain } = useNetwork();
   const usdtAddress = useCoinAddress(coin, chain?.id || getSupportedChainId());
+  console.log(`usdtAddress`, usdtAddress)
   const { handleTxnResponse, contextHolder, api } = useTxnNotify();
   const {
     hash,
@@ -520,6 +521,10 @@ function BuyByCoinButton({
     console.log(`value: ${value}`);
     switch (getChainId(network)) {
       case 43113:
+        //@ts-ignore
+        submit?.({ args: [usdtAddress, packId, amount] });
+        break;
+      case 5611:
         //@ts-ignore
         submit?.({ args: [usdtAddress, packId, amount] });
         break;
